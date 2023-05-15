@@ -14,9 +14,7 @@ import csv
 # pytest test_project.py
 
 def gamesOK(games):
-   # you can use functions from graphs.py like this:
-   x = graphs.arbitrary({1,2,3})  # Delete
-   y = digraphs.arbitrary({1,2,3}) # Delete
+   pass
 
 def potentialReferees(refereecsvfilename, player1, player2):
    pass # Delete

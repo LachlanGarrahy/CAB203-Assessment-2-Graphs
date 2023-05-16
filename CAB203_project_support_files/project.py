@@ -14,7 +14,12 @@ import csv
 # pytest test_project.py
 
 def gamesOK(games):
-   pass
+   V = set(V for N in games for V in N)
+   E = games.union(set((v,u) for u,v in games))
+   for u in V:
+      for v in V:
+         if (graphs.distance(V,E,u,v) > 2): return False
+   return True
 
 def potentialReferees(refereecsvfilename, player1, player2):
    pass # Delete
@@ -27,3 +32,4 @@ def gameSchedule(assignedReferees):
 
 def ranking(games):
    pass # Delete
+

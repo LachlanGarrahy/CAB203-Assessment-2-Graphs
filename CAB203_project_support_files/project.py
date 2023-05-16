@@ -14,15 +14,24 @@ import csv
 # pytest test_project.py
 
 def gamesOK(games):
-   V = set(V for N in games for V in N)
-   E = games.union(set((v,u) for u,v in games))
+   # set verticies as all distinct players in games
+   V = getVerticiesFromList(games)
+   # set edges as all games and the revers of all games
+   E = getEdgesFromList(games)
+   # find the distance between each player and return false if more than 2
    for u in V:
       for v in V:
          if (graphs.distance(V,E,u,v) > 2): return False
    return True
 
 def potentialReferees(refereecsvfilename, player1, player2):
-   pass # Delete
+   R = set()
+   with open(refereecsvfilename, 'r') as file:
+      csvreader = csv.reader(file)
+      next(csvreader)
+      for row in csvreader:
+         if( not ((player1 in row) | (player2 in row))): R.add(row[0])
+   return R
 
 def gameReferees(gamePotentialReferees):
    pass # Delete
@@ -33,3 +42,8 @@ def gameSchedule(assignedReferees):
 def ranking(games):
    pass # Delete
 
+def getVerticiesFromList(list):
+   return set(V for N in list for V in N)
+
+def getEdgesFromList(list):
+   return list.union(set((v,u) for u,v in list))

@@ -3,3 +3,6 @@
 /pyvenv.cfg
 /CAB203_project_support_files/__pycache__/
 /.vscode/
+/lib
+/lib64
+/bin

@@ -60,8 +60,31 @@ def gameReferees(gamePotentialReferees):
    return R
 
 def gameSchedule(assignedReferees):
-   pass # Delete
+   N = assignedReferees
+   U = set(N.keys())
+   V = {(u,v,N[(u,v)]) for u,v in U}
+   E = set()
+   R = []
+   for u in V:
+      for e in u:
+         for t in V:
+            if (e in t and t != u): E.add((t,u))
+   C = graphs.minColouring(V,E)
+   for i in range(C[0]):
+      T = set()
+      for e in C[1]:
+         if(C[1][e] == i): T.add(e)
+      R.append(T)
+   return R
+   
 
 def ranking(games):
    V = set(V for N in games for V in N)
    return digraphs.topOrdering(V,games)
+
+gameSchedule({ 
+      ('Alice', 'Bob'): 'Rene', 
+      ('Elaine', 'Charlie'): 'Dave',
+      ('Rene', 'Elaine'): 'Alice',
+      ('Dave', 'Bob'): 'Charlie'
+   })

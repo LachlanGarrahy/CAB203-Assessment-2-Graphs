@@ -64,9 +64,6 @@ def gameSchedule(assignedReferees):
    pass # Delete
 
 def ranking(games):
-   pass # Delete
-
-games = { ('Alice', 'Bob'): { 'David'},
-             ('Bob', 'Charlie'): { 'David'} }
-
-gameReferees(games)
+   V = set(V for N in games for V in N)
+   E = games
+   return digraphs.topOrdering(V,E)

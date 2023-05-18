@@ -41,8 +41,7 @@ def potentialReferees(refereecsvfilename, player1, player2):
          U.add(u)
          for e in row[1:]:
             E.add((u,e))
-   R = U - digraphs.NS_in(V,E,S) - S
-   return R
+   return U - digraphs.NS_in(V,E,S) - S
 
 def gameReferees(gamePotentialReferees):
    N = gamePotentialReferees
@@ -65,5 +64,4 @@ def gameSchedule(assignedReferees):
 
 def ranking(games):
    V = set(V for N in games for V in N)
-   E = games
-   return digraphs.topOrdering(V,E)
+   return digraphs.topOrdering(V,games)

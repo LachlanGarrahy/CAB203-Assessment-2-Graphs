@@ -45,10 +45,28 @@ def potentialReferees(refereecsvfilename, player1, player2):
    return R
 
 def gameReferees(gamePotentialReferees):
-   return 
+   N = gamePotentialReferees
+   A = set(N.keys())
+   B = {v for u in A for v in N[u]}
+   E = {(u,v) for u in A for v in N[u]}
+   R = {}
+
+   MM = digraphs.maxMatching(A,B,E)
+
+   for m in MM:
+      if(m[0] not in B):R[m[0]] = m[1]
+
+   if len(R) < len(N): R = None
+
+   return R
 
 def gameSchedule(assignedReferees):
    pass # Delete
 
 def ranking(games):
    pass # Delete
+
+games = { ('Alice', 'Bob'): { 'David'},
+             ('Bob', 'Charlie'): { 'David'} }
+
+gameReferees(games)
